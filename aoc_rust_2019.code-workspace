@@ -16,6 +16,7 @@
 		"rust-analyzer.check.command": "clippy",
 		"rust-analyzer.imports.granularity.group": "module",
 		"workbench.editor.restoreViewState": false,
-		"workbench.startupEditor": "none"
+		"workbench.startupEditor": "none",
+		"editor.colorDecorators": false
 	}
 }
