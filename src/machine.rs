@@ -397,7 +397,17 @@ impl Machine {
         }
         Ok(self.outputs.pop_front())
     }
-    
+
+    pub fn run_until_input(&mut self) -> Result<(), MachineError> {
+        loop {
+            match self.step() {
+                Ok(()) => (),
+                Err(MachineError::EmptyInput) => return Ok(()),
+                Err(err) => return Err(err),
+            }
+        }
+    }
+
     #[allow(unused, reason = "tests")]
     pub fn into_memory(self) -> Vec<Value> {
         self.memory
