@@ -1,5 +1,5 @@
 use std::collections::VecDeque;
-use std::fmt::Display;
+use std::fmt::{Display, Write};
 use std::num::ParseIntError;
 
 use thiserror::Error;
@@ -411,6 +411,13 @@ impl Machine {
     #[allow(unused, reason = "tests")]
     pub fn into_memory(self) -> Vec<Value> {
         self.memory
+    }
+}
+
+impl Write for Machine {
+    fn write_str(&mut self, s: &str) -> std::fmt::Result {
+        self.inputs.extend(s.bytes().map(Value::from));
+        Ok(())
     }
 }
 
